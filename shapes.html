@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shape Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f4f8;
+      color: #333;
+    }
+
+    header {
+      background-color: #0078d7;
+      color: #fff;
+      text-align: center;
+      padding: 1rem 0;
+    }
+
+    main {
+      padding: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: center;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 300px;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .card h2 {
+      margin-bottom: 0.5rem;
+    }
+
+    .card img {
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 1rem;
+    }
+
+    .input-group {
+      margin-bottom: 1rem;
+      text-align: left;
+    }
+
+    .input-group label {
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    button {
+      background-color: #0078d7;
+      color: white;
+      border: none;
+      padding: 0.7rem 1.5rem;
+      cursor: pointer;
+      border-radius: 4px;
+      font-size: 1rem;
+    }
+
+    button:hover {
+      background-color: #005bb5;
+    }
+
+    .result {
+      margin-top: 1rem;
+      padding: 1rem;
+      background-color: #f1f9ff;
+      border-left: 4px solid #0078d7;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Shape Calculator</h1>
+    <p>Calculate perimeter, area, and volume of different shapes</p>
+  </header>
+  <main>
+    <!-- Square -->
+    <div class="card" id="square">
+      <h2>Square</h2>
+      <img src="./images/square.webp" alt="Square">
+      <div class="input-group">
+        <label for="square-side">Side (a):</label>
+        <input type="number" id="square-side" placeholder="Enter side length">
+      </div>
+      <button onclick="calculateSquare()">Calculate</button>
+      <div class="result" id="square-result"></div>
+    </div>
+
+    <!-- Rectangle -->
+    <div class="card" id="rectangle">
+      <h2>Rectangle</h2>
+      <img src="./images/Rectangle.jpg" alt="Rectangle">
+      <div class="input-group">
+        <label for="rectangle-length">Length (l):</label>
+        <input type="number" id="rectangle-length" placeholder="Enter length">
+      </div>
+      <div class="input-group">
+        <label for="rectangle-width">Width (w):</label>
+        <input type="number" id="rectangle-width" placeholder="Enter width">
+      </div>
+      <button onclick="calculateRectangle()">Calculate</button>
+      <div class="result" id="rectangle-result"></div>
+    </div>
+
+    <!-- Cube -->
+    <div class="card" id="cube">
+      <h2>Cube</h2>
+      <img src="./images/Cube.jpg" alt="Cube">
+      <div class="input-group">
+        <label for="cube-side">Side (a):</label>
+        <input type="number" id="cube-side" placeholder="Enter side length">
+      </div>
+      <button onclick="calculateCube()">Calculate</button>
+      <div class="result" id="cube-result"></div>
+    </div>
+
+    <!-- Triangle -->
+    <div class="card" id="triangle">
+      <h2>Triangle</h2>
+      <img src="./images/triangle.avif" alt="Triangle">
+      <div class="input-group">
+        <label for="triangle-base">Base (b):</label>
+        <input type="number" id="triangle-base" placeholder="Enter base length">
+      </div>
+      <div class="input-group">
+        <label for="triangle-height">Height (h):</label>
+        <input type="number" id="triangle-height" placeholder="Enter height">
+      </div>
+      <button onclick="calculateTriangle()">Calculate</button>
+      <div class="result" id="triangle-result"></div>
+    </div>
+
+    <!-- Cuboid -->
+    <div class="card" id="cuboid">
+      <h2>Cuboid</h2>
+      <img src="./images/Cuboid_no_label.svg.png" alt="Cuboid">
+      <div class="input-group">
+        <label for="cuboid-length">Length (l):</label>
+        <input type="number" id="cuboid-length" placeholder="Enter length">
+      </div>
+      <div class="input-group">
+        <label for="cuboid-width">Width (w):</label>
+        <input type="number" id="cuboid-width" placeholder="Enter width">
+      </div>
+      <div class="input-group">
+        <label for="cuboid-height">Height (h):</label>
+        <input type="number" id="cuboid-height" placeholder="Enter height">
+      </div>
+      <button onclick="calculateCuboid()">Calculate</button>
+      <div class="result" id="cuboid-result"></div>
+    </div>
+
+    <!-- Pyramid -->
+    <div class="card" id="pyramid">
+      <h2>Pyramid</h2>
+      <img src="./images/Pyramid-Shape.jpg" alt="Pyramid">
+      <div class="input-group">
+        <label for="pyramid-base">Base Area (A):</label>
+        <input type="number" id="pyramid-base" placeholder="Enter base area">
+      </div>
+      <div class="input-group">
+        <label for="pyramid-height">Height (h):</label>
+        <input type="number" id="pyramid-height" placeholder="Enter height">
+      </div>
+      <button onclick="calculatePyramid()">Calculate</button>
+      <div class="result" id="pyramid-result"></div>
+    </div>
+  </main>
+
+  <script>
+    function calculateSquare() {
+      const side = parseFloat(document.getElementById('square-side').value);
+      if (!isNaN(side) && side > 0) {
+        const perimeter = 4 * side;
+        const area = side * side;
+        document.getElementById('square-result').innerHTML = `
+          <p>Perimeter: ${perimeter} units</p>
+          <p>Area: ${area} square units</p>
+        `;
+      } else {
+        alert('Please enter a valid side length.');
+      }
+    }
+
+    function calculateRectangle() {
+      const length = parseFloat(document.getElementById('rectangle-length').value);
+      const width = parseFloat(document.getElementById('rectangle-width').value);
+      if (!isNaN(length) && !isNaN(width) && length > 0 && width > 0) {
+        const perimeter = 2 * (length + width);
+        const area = length * width;
+        document.getElementById('rectangle-result').innerHTML = `
+          <p>Perimeter: ${perimeter} units</p>
+          <p>Area: ${area} square units</p>
+        `;
+      } else {
+        alert('Please enter valid dimensions.');
+      }
+    }
+
+    function calculateCube() {
+      const side = parseFloat(document.getElementById('cube-side').value);
+      if (!isNaN(side) && side > 0) {
+        const surfaceArea = 6 * side * side;
+        const volume = side * side * side;
+        document.getElementById('cube-result').innerHTML = `
+          <p>Surface Area: ${surfaceArea} square units</p>
+          <p>Volume: ${volume} cubic units</p>
+        `;
+      } else {
+        alert('Please enter a valid side length.');
+      }
+    }
+
+    function calculateTriangle() {
+      const base = parseFloat(document.getElementById('triangle-base').value);
+      const height = parseFloat(document.getElementById('triangle-height').value);
+      if (!isNaN(base) && !isNaN(height) && base > 0 && height > 0) {
+        const area = 0.5 * base * height;
+        document.getElementById('triangle-result').innerHTML = `
+          <p>Area: ${area} square units</p>
+        `;
+      } else {
+        alert('Please enter valid dimensions.');
+      }
+    }
+
+    function calculateCuboid() {
+      const length = parseFloat(document.getElementById('cuboid-length').value);
+      const width = parseFloat(document.getElementById('cuboid-width').value);
+      const height = parseFloat(document.getElementById('cuboid-height').value);
+      if (!isNaN(length) && !isNaN(width) && !isNaN(height) && length > 0 && width > 0 && height > 0) {
+        const surfaceArea = 2 * (length * width + width * height + height * length);
+        const volume = length * width * height;
+        document.getElementById('cuboid-result').innerHTML = `
+          <p>Surface Area: ${surfaceArea} square units</p>
+          <p>Volume: ${volume} cubic units</p>
+        `;
+      } else {
+        alert('Please enter valid dimensions.');
+      }
+    }
+
+    function calculatePyramid() {
+      const baseArea = parseFloat(document.getElementById('pyramid-base').value);
+      const height = parseFloat(document.getElementById('pyramid-height').value);
+      if (!isNaN(baseArea) && !isNaN(height) && baseArea > 0 && height > 0) {
+        const volume = (1 / 3) * baseArea * height;
+        document.getElementById('pyramid-result').innerHTML = `
+          <p>Volume: ${volume} cubic units</p>
+        `;
+      } else {
+        alert('Please enter valid dimensions.');
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dice-game</title>
+</head>
+<style>
+    /* General Styles */
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f9;
+        color: #333;
+        text-align: center;
+    }
+
+    h1 {
+        color: #444;
+        margin: 20px 0;
+    }
+
+    h2 {
+        margin: 10px 0;
+        color: #555;
+    }
+
+    /* Player Sections */
+    #p1,
+    #p2 {
+        display: inline-block;
+        width: 45%;
+        padding: 15px;
+        margin: 10px;
+        border: 2px solid #ccc;
+        border-radius: 10px;
+
+        transition: background-color 0.3s;
+    }
+
+    .green {
+        background-color: #00ff3c;
+        /* Highlight active player */
+    }
+
+    #p1 h2,
+    #p2 h2 {
+        font-size: 1.5em;
+        font-weight: bold;
+    }
+
+    /* Score Display */
+    div>label {
+        font-size: 1.2em;
+        margin-right: 10px;
+    }
+
+    div>p {
+        display: inline-block;
+        font-size: 1.5em;
+        font-weight: bold;
+        color: #333;
+        margin: 5px 0;
+    }
+
+    /* Buttons */
+    button {
+        font-size: 1em;
+        padding: 10px 20px;
+        margin: 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s, transform 0.2s;
+    }
+
+    button:disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
+        color: #666;
+    }
+
+    #rdice {
+        background-color: #007bff;
+        color: #fff;
+    }
+
+    #rdice:hover:not(:disabled) {
+        background-color: #0056b3;
+        transform: scale(1.05);
+    }
+
+    #ngame {
+        background-color: #28a745;
+        color: #fff;
+    }
+
+    #ngame:hover:not(:disabled) {
+        background-color: #1e7e34;
+        transform: scale(1.05);
+    }
+
+    #enterbtn {
+        background-color: #ffc107;
+        color: #333;
+    }
+
+    #enterbtn:hover:not(:disabled) {
+        background-color: #e0a800;
+        transform: scale(1.05);
+    }
+
+    /* Input Field */
+    input[type="number"] {
+        font-size: 1em;
+        padding: 5px;
+        width: 50%;
+        border: 2px solid #ccc;
+        border-radius: 5px;
+        margin: 10px 0;
+    }
+
+    /* Dice Score and Winner Section */
+    #dscore,
+    #winner {
+        font-size: 1.5em;
+        font-weight: bold;
+        color: #555;
+        margin: 15px 0;
+    }
+
+    /* Layout */
+    div {
+        margin: 20px auto;
+        max-width: 80%;
+    }
+
+    #rounds {
+        margin-bottom: 10px;
+    }
+</style>
+
+<body>
+    <h1>Welcome to Dice-game</h1>
+    <h1 id="winner"></h1>
+    <div id="p1">
+        <h2>PLAYER 1</h2>
+    </div>
+    <div id="p2">
+        <h2>PLAYER 2</h2>
+    </div>
+
+    <div>
+        <label>Player 1 points</label>
+        <p id="point1">0</p>
+    </div>
+    <div>
+        <label>Player 2 points</label>
+        <p id="point2">0</p>
+    </div>
+
+    <button id="rdice" disabled>Roll Dice</button>
+    <button id="ngame" disabled>New Game</button>
+
+    <div>
+        <label>Dice score</label>
+        <p id="dscore"></p>
+    </div>
+
+    <div>
+        <label>No. of Rounds</label>
+        <input type="number" placeholder="Enter number of Rounds" id="rounds" required/>
+        <button id="enterbtn">Enter</button>
+    </div>
+
+    <script src="./dice.js"></script>
+</body>
+
+</html>
