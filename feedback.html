@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gradient Feedback Form</title>
+    <style>
+        :root {
+            --gradient-bg: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-secondary: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: var(--gradient-bg);
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        input, textarea {
+            margin-bottom: 1rem;
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        button {
+            padding: 0.75rem;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: bold;
+            color: white;
+            background: var(--gradient-primary);
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        .rating {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .rating input[type="radio"] {
+            display: none;
+        }
+
+        .rating label {
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+            background: var(--gradient-secondary);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            color: white;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+
+        .rating input[type="radio"]:checked + label {
+            transform: scale(1.2);
+        }
+
+        /* New styles for the custom alert */
+        .alert {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--gradient-primary);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-width: 300px;
+            max-width: 90%;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .alert.show {
+            opacity: 1;
+        }
+
+        .alert-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0;
+            margin-left: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Feedback Form</h2>
+        <form id="feedbackForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label>Rating:</label>
+            <div class="rating">
+                <input type="radio" id="star1" name="rating" value="1" required>
+                <label for="star1">1</label>
+                <input type="radio" id="star2" name="rating" value="2">
+                <label for="star2">2</label>
+                <input type="radio" id="star3" name="rating" value="3">
+                <label for="star3">3</label>
+                <input type="radio" id="star4" name="rating" value="4">
+                <label for="star4">4</label>
+                <input type="radio" id="star5" name="rating" value="5">
+                <label for="star5">5</label>
+            </div>
+
+            <label for="feedback">Feedback:</label>
+            <textarea id="feedback" name="feedback" required></textarea>
+
+            <button type="submit">Submit Feedback</button>
+        </form>
+    </div>
+
+    <!-- Custom alert component -->
+    <div id="customAlert" class="alert">
+        <span id="alertMessage"></span>
+        <button class="alert-close" onclick="closeAlert()">&times;</button>
+    </div>
+
+    <script src="./index.js"></script>
+</body>
+</html>
+

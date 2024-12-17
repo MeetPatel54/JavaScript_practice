@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment-4</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #74ebd5, #acb6e5);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            border: 2px solid #333;
+            border-radius: 10px;
+            width: 400px;
+            height: 400px;
+            background: #fff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        h1 {
+            margin: 0 0 20px 0;
+            font-size: 24px;
+            color: #2c3e50;
+            text-transform: uppercase;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table tr {
+            transition: background 0.3s ease;
+        }
+
+        table tr:hover {
+            background: #f0f0f0;
+        }
+
+        td {
+            border: 2px solid #ddd;
+            padding: 15px;
+            text-align: center;
+            font-size: 16px;
+            color: #2c3e50;
+        }
+
+        td a {
+            text-decoration: none;
+            color: #3498db;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        td a:hover {
+            color: #1abc9c;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Assignment-4</h1>
+        <table>
+            <tr>
+                <td>Feedback</td>
+                <td><a href="./feedback.html">View</a></td>
+            </tr>
+            <tr>
+                <td>Resume</td>
+                <td><a href="./resume.html">View</a></td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
